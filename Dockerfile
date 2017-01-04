@@ -37,6 +37,7 @@ ENV LD_LIBRARY_PATH=$QT_BASE_DIR/lib/x86_64-linux-gnu:$QT_BASE_DIR/lib:$LD_LIBRA
 ENV PKG_CONFIG_PATH=$QT_BASE_DIR/lib/pkgconfig:$PKG_CONFIG_PATH
 
 #Xvfb for capybara-webkit
+RUN apt-get install -y xvfb
 RUN Xvfb :99 &
 ENV DISPLAY=:99
 
