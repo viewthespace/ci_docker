@@ -38,7 +38,6 @@ ENV PKG_CONFIG_PATH=$QT_BASE_DIR/lib/pkgconfig:$PKG_CONFIG_PATH
 
 #Xvfb for capybara-webkit
 RUN apt-get install -y xvfb
-RUN Xvfb :99 &
 ENV DISPLAY=:99
 
 ## for a JS runtime
