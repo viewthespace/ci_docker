@@ -3,7 +3,7 @@ FROM ubuntu:14.04
 
 RUN apt-get update -qq && apt-get install -y build-essential software-properties-common \
   git libxml2-dev libxslt1-dev sqlite3 libsqlite3-dev libssl-dev libreadline-dev libyaml-dev \
-  zlib1g-dev libffi-dev libcurl4-openssl-dev curl
+  zlib1g-dev libffi-dev libcurl4-openssl-dev curl unzip
 
 #install ruby
 RUN apt-add-repository -y ppa:brightbox/ruby-ng && \
@@ -22,6 +22,16 @@ RUN apt-get update -y -qq && apt-get install -y \
     postgresql-client-9.4 \
     postgresql-contrib-9.4 \
     libpq-dev
+
+#Install python so we can install aws-cli for caching
+RUN apt-get install -y python python-dev python-pip python-virtualenv && \
+  rm -rf /var/lib/apt/lists/*
+
+#Install aws cli
+RUN curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip" && \
+  unzip awscli-bundle.zip && \
+  ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws && \
+  rm -rf awscli-bundle
 
 # Install QT
 RUN add-apt-repository ppa:beineri/opt-qt551-trusty && \
