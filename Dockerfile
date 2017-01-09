@@ -58,5 +58,4 @@ RUN apt-get install -y nodejs
 
 ENV BUNDLE_JOBS=4 \
   LANG="C.UTF-8" \
-  LC_ALL="C.UTF-8" \
-  BUNDLE_PATH=/bundle
+  LC_ALL="C.UTF-8"
