@@ -3,7 +3,7 @@ FROM ubuntu:14.04
 
 RUN apt-get update -qq && apt-get install -y build-essential software-properties-common \
   git libxml2-dev libxslt1-dev sqlite3 libsqlite3-dev libssl-dev libreadline-dev libyaml-dev \
-  zlib1g-dev libffi-dev libcurl4-openssl-dev curl unzip
+  zlib1g-dev libffi-dev libcurl4-openssl-dev curl unzip zip
 
 #install ruby
 RUN apt-add-repository -y ppa:brightbox/ruby-ng && \
