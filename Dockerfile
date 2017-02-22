@@ -90,8 +90,11 @@ RUN apt-get update -qqy \
   && mv /opt/firefox /opt/firefox-$FIREFOX_VERSION \
   && ln -fs /opt/firefox-$FIREFOX_VERSION/firefox /usr/bin/firefox
 
-RUN add-apt-repository ppa:nilarimogard/webupd8 -y \
-  && apt-get update -qqy \
-  && apt-get -y install freshplayerplugin \
+RUN add-apt-repository -y "deb http://archive.canonical.com/ubuntu $(lsb_release -sc) partner" && \
+    apt-get -y update && \
+    apt-get install -y adobe-flashplugin && \
+    apt-get autoremove -y && \
+    apt-get clean all
+
 
 
