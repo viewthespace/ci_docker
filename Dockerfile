@@ -93,6 +93,8 @@ RUN apt-get update -qqy \
 RUN add-apt-repository -y "deb http://archive.canonical.com/ubuntu $(lsb_release -sc) partner" && \
     apt-get -y update && \
     apt-get install -y adobe-flashplugin && \
+    apt-get install -y libvpx1 && \
+    apt-get install -y libasound2 && \
     apt-get autoremove -y && \
     apt-get clean all
 
