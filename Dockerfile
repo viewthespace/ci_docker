@@ -49,8 +49,11 @@ rm -rf awscli-bundle
 
 ## for a JS runtime
 #nodejs
-RUN curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-RUN apt-get install -y nodejs
+RUN curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash - && \
+    apt-get install -y nodejs && \
+    npm install --global yarn@0.21.3 && \
+    apt-get clean all && \
+    echo '{ "allow_root": true }' > /root/.bowerrc
 
 # Env
 ENV PHANTOMJS_VERSION 2.1.1
@@ -76,7 +79,6 @@ ENV BUNDLE_JOBS=4 \
   LANG="C.UTF-8" \
   LC_ALL="C.UTF-8"
 
-
 ENV FIREFOX_VERSION 37.0.2
 RUN apt-get update -qqy \
   && apt-get -y install xvfb \
@@ -88,7 +90,8 @@ RUN apt-get update -qqy \
   && tar -C /opt -xjf /tmp/firefox.tar.bz2 \
   && rm /tmp/firefox.tar.bz2 \
   && mv /opt/firefox /opt/firefox-$FIREFOX_VERSION \
-  && ln -fs /opt/firefox-$FIREFOX_VERSION/firefox /usr/bin/firefox
+  && ln -fs /opt/firefox-$FIREFOX_VERSION/firefox /usr/bin/firefox \
+  && apt-get clean all
 
 RUN add-apt-repository -y "deb http://archive.canonical.com/ubuntu $(lsb_release -sc) partner" && \
     apt-get -y update && \
@@ -98,5 +101,5 @@ RUN add-apt-repository -y "deb http://archive.canonical.com/ubuntu $(lsb_release
     apt-get autoremove -y && \
     apt-get clean all
 
-
+WORKDIR /app
 
