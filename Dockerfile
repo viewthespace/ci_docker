@@ -22,7 +22,7 @@ RUN apt-get update -qq && apt-get install -y build-essential software-properties
    #install ruby
    && apt-add-repository -y ppa:brightbox/ruby-ng \
    && apt-get update \
-   && apt-get install -y ruby2.3 ruby2.3-dev \
+   && apt-get install -y ruby2.4 ruby2.4-dev \
    && apt-get clean all \
    && gem install bundler --version "$BUNDLER_VERSION" \
    && mkdir -p "$GEM_HOME" "$BUNDLE_BIN" \
